@@ -21,5 +21,23 @@ class Command {
 
     final Set<String> metaCommandHashSet = new HashSet<>(metaCommandList);
     final Set<String> preparedStatementHashSet = new HashSet<>(preparedStatementList);
+    
+    public boolean isMetaStatement(String command) {
+        return metaCommandHashSet.contains(command);
+    }
 
+    public boolean isPreparedStatement(String command) {
+        return preparedStatementHashSet.contains(command);
+    }
+    
+    public String getStatementType(String command) {
+        if (this.isMetaStatement(command)) {
+            return this.META_STATEMENT;
+        }
+
+        if (this.isPreparedStatement(command)) {
+            return this.PREPARED_STATEMENT;
+        }
+        return this.UNRECOGNIZED;
+    }
 }

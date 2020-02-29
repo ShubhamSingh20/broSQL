@@ -1,33 +1,25 @@
 package app;
 
 class Statement extends Command{
-    public boolean isMetaStatement(String command) {
-        return metaCommandHashSet.contains(command);
-    }
 
-    public boolean isPreparedStatement(String command) {
-        return preparedStatementHashSet.contains(command);
-    }
-
-    public String getStatementType(String command) {
-        if (this.isMetaStatement(command)) {
-            return this.META_STATEMENT;
+    public void handleMetaStatements(String statement) {
+        switch (statement) {
+            case ".q":
+                System.exit(0);
+                break;
+            default:
+                break;
         }
-
-        if (this.isPreparedStatement(command)) {
-            return this.PREPARED_STATEMENT;
-        }
-        return this.UNRECOGNIZED;
     }
 
-    public void executeStatement(String statement, String STATEMENT_TYPE){
-        switch (STATEMENT_TYPE) {
+    public void executeStatement(InputBuffer inputBuffer){
+        switch (inputBuffer.STATEMENT_TYPE) {
             case PREPARED_STATEMENT:
                 System.out.println("prepared statement");
                 break;
             
             case META_STATEMENT:
-                System.out.println("meta statement");
+                this.handleMetaStatements(inputBuffer.firstCommand());
                 break;
         
             default:

@@ -78,9 +78,7 @@ class InputBufferHandler {
 
     public void parseStatement(){
         this.setStatementType();
-        this.statement.executeStatement(
-            this.inputBuffer.getString(), this.inputBuffer.STATEMENT_TYPE
-        );
+        this.statement.executeStatement(this.inputBuffer);
     }
 
 }
