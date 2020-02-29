@@ -9,14 +9,7 @@ public class App {
            inputBufferHandler.createNewInputBuffer();
            System.out.print("db > ");
            inputBufferHandler.consoleInput();
-
-           if (inputBufferHandler.isQuitCommand()) {
-               inputBufferHandler.closeInputBuffer();
-               return;
-           }else{
-               inputBufferHandler.consoleOutput();   
-           }
-
+           inputBufferHandler.parseStatement();
        }
     }
 }
